@@ -10,8 +10,20 @@ import { DataService } from './data.service';
 export class AppComponent {
 
   data: any;
+  get: any;
+  myObj: JSON;
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService) {
+
+
+    this._dataService.sendMockURL(myObj);
+
+    this._dataService.getMockURL()
+      .subscribe(res => {
+        this.get = res;
+      });
+
+  }
 
   validate() {
     this._dataService.getValidationResult()
@@ -19,10 +31,5 @@ export class AppComponent {
         this.data = res;
         console.log(res);
       });
-
-    this._dataService.sendMockURL('wasdwa');
-
-    this._dataService.getMockURL()
-      .subscribe(res => { });
   }
 }

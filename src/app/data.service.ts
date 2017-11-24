@@ -9,16 +9,18 @@ export class DataService {
   result: any;
   get: any;
 
-  constructor(private _http: Http) {  }
+  constructor(private _http: Http) { }
 
   getValidationResult() {
     return this._http.get('/results')
       .map(result => this.result = result['_body']);
   }
 
-  sendMockURL(mockURL: string) {
-    return this._http.post('/mockURL', mockURL)
-      .map(res => console.log(res));
+  sendMockURL(mockURL: JSON) {
+    this._http.post('/mockURL', mockURL)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   getMockURL() {

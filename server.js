@@ -26,8 +26,15 @@ app.get('/results', (req, res) => {
     });
 });
 
+app.post('/mockURL', function (req, res) {
+    res.send(req.body)
+})
+
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 

@@ -4,4 +4,4 @@ This application is designed to test the atlassian [swagger-mock-validator] (htt
 
 ## Start: 
 
-Type `node server.js`
+`ng build && node server.js`
