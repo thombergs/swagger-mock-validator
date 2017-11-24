@@ -1,0 +1,86 @@
+swagger: '2.0'
+info:
+  description: Schnittstelle UniCorn
+  version: 1.0.0
+  title: Unicorn API
+  # put the contact info for your development or API team
+  contact:
+    name: Christian Dudzik
+    email: christian.dudzik@remondis.de
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+paths:
+  /weight:
+    get:
+      summary: Verwiegung
+      operationId: getWeight
+      description: |
+        Führt eine Wägung auf der übergebenen Waage durch.
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: deviceId
+        description: Eindeutige Indentifizierung eines Devices vom Typ Waage.
+        required: true
+        type: integer
+      responses:
+        200:
+          description: Wägungsdaten
+          schema:
+            type: object
+            $ref: '#/definitions/weightdata'
+        400:
+          description: Falscher Eingabeparameter.
+        404:
+          description: Übergebene Device-Identifier ist nicht bekannt.
+        502:
+          description: Device kann nicht angesprochen werden.
+        504: 
+          description: Device reagiert nicht in angemessener Zeit.
+definitions:
+  weightdata:
+    type: object
+    required:
+    - weight
+    - unit
+    - timestamp
+    - alibiNumber
+    properties:
+      weight:
+        type: number
+        example: "2.31"
+      unit:
+        type: string
+        example: KG
+      timestamp:
+        type: string 
+        format: "YYYY-MM-DDThh:mm:ss.sTZD"
+        example: "2017-07-16T19:20:30.45+01:00"
+      alibiNumber:
+        type: integer
+        format: int32
+        example: "123"
+      licensedata:
+        type: object
+        $ref: '#/definitions/licensedata'
+  licensedata:
+    type: object
+    required:
+    - licensePlate
+    - countryCode
+    properties:
+      licensePlate:
+        type: string
+        example: "UN-RE 1337"
+      countryCode:
+        type: string
+        example: "de"
+        
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /luettenberg4/Unicorn/1.0.0
+schemes:
+ - https

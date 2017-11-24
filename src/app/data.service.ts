@@ -6,13 +6,24 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
 
-  result:any;
+  result: any;
+  get: any;
 
-  constructor(private _http: Http) { }
+  constructor(private _http: Http) {  }
 
-  getUsers() {
-    return this._http.get("/api/users")
-      .map(result => this.result = result.json().data);
+  getValidationResult() {
+    return this._http.get('/results')
+      .map(result => this.result = result['_body']);
+  }
+
+  sendMockURL(mockURL: string) {
+    return this._http.post('/mockURL', mockURL)
+      .map(res => console.log(res));
+  }
+
+  getMockURL() {
+    return this._http.get('/mockURL')
+      .map(result => this.result = result['_body']);
   }
 
 }

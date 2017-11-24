@@ -1,0 +1,135 @@
+{
+    "provider": {
+        "name": "organization"
+    },
+    "consumer": {
+        "name": "weighing"
+    },
+    "interactions": [
+        {
+            "providerState": "a branch with id 1",
+            "description": "a GET for branch with id 1",
+            "request": {
+                "method": "GET",
+                "path": "/api/branches/1",
+                "body": null
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "companyId": 12,
+                    "address": {
+                        "zipCode": "44536",
+                        "city": "Lünen",
+                        "street": "Brunnenstraße",
+                        "countryCode": "DE",
+                        "houseNumber": "138"
+                    },
+                    "companyName": "REMONDIS Co. & KG",
+                    "name": "REMONDIS Lünen",
+                    "id": 1
+                },
+                "matchingRules": {
+                    "$.headers.Content-Type": {
+                        "regex": "application/json"
+                    },
+                    "$.body.address.zipCode": {
+                        "match": "type"
+                    },
+                    "$.body.companyId": {
+                        "match": "type"
+                    },
+                    "$.body.id": {
+                        "match": "type"
+                    },
+                    "$.body.address.houseNumber": {
+                        "match": "type"
+                    },
+                    "$.body.name": {
+                        "match": "type"
+                    },
+                    "$.body.address.countryCode": {
+                        "match": "type"
+                    },
+                    "$.body.companyName": {
+                        "match": "type"
+                    },
+                    "$.body.address.city": {
+                        "match": "type"
+                    },
+                    "$.body.address.street": {
+                        "match": "type"
+                    }
+                }
+            }
+        },
+        {
+            "providerState": "a company with id 2",
+            "description": "a GET for company with id 2",
+            "request": {
+                "method": "GET",
+                "path": "/api/companies/2",
+                "body": null
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "address": {
+                        "zipCode": "44534",
+                        "city": "Lünen",
+                        "street": "Brunnenstraße",
+                        "countryCode": "DE",
+                        "houseNumber": "136"
+                    },
+                    "companyNumber": 123,
+                    "name": "Remondis",
+                    "id": 2
+                },
+                "matchingRules": {
+                    "$.headers.Content-Type": {
+                        "regex": "application/json;charset=UTF-8"
+                    },
+                    "$.body.address.zipCode": {
+                        "match": "type"
+                    },
+                    "$.body.id": {
+                        "match": "type"
+                    },
+                    "$.body.address.houseNumber": {
+                        "match": "type"
+                    },
+                    "$.body.name": {
+                        "match": "type"
+                    },
+                    "$.body.address.countryCode": {
+                        "regex": "[A-Z][A-Z]"
+                    },
+                    "$.body.companyNumber": {
+                        "match": "type"
+                    },
+                    "$.body.address.city": {
+                        "match": "type"
+                    },
+                    "$.body.address.street": {
+                        "match": "type"
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "2.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.2.6"
+        }
+    },
+    "createdAt": "2017-10-05T08:13:50+00:00"
+}

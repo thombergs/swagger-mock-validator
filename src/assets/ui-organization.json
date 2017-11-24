@@ -1,0 +1,203 @@
+{
+    "consumer": {
+        "name": "ui"
+    },
+    "provider": {
+        "name": "organization"
+    },
+    "interactions": [
+        {
+            "description": "post-200-branches",
+            "providerState": "post-200-branches",
+            "request": {
+                "method": "POST",
+                "path": "/organization-service/api/branches",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "name": "Geschäftsstelle Lünen",
+                    "companyId": 42,
+                    "companyName": "REMONDIS IT-Services GmbH",
+                    "address": {
+                        "houseNumber": "138 a (Hinterhof)",
+                        "street": "Brunnenstraße",
+                        "city": "Lünen",
+                        "zipCode": "44536",
+                        "countryCode": "DE"
+                    }
+                }
+            },
+            "response": {
+                "status": 201,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": 42
+                }
+            }
+        },
+        {
+            "description": "put-200-branches_{id}",
+            "providerState": "put-200-branches_{id}",
+            "request": {
+                "method": "PUT",
+                "path": "/organization-service/api/branches/undefined",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "name": "Geschäftsstelle Lünen",
+                    "companyId": 42,
+                    "companyName": "REMONDIS IT-Services GmbH",
+                    "address": {
+                        "houseNumber": "138 a (Hinterhof)",
+                        "street": "Brunnenstraße",
+                        "city": "Lünen",
+                        "zipCode": "44536",
+                        "countryCode": "DE"
+                    }
+                }
+            },
+            "response": {
+                "status": 204,
+                "headers": {}
+            }
+        },
+        {
+            "description": "get-200-branches",
+            "providerState": "get-200-branches",
+            "request": {
+                "method": "GET",
+                "path": "/organization-service/api/branches",
+                "query": "page=0&size=1"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "size": 1,
+                    "number": 0,
+                    "first": true,
+                    "last": true,
+                    "numberOfElements": 1,
+                    "totalElements": 1,
+                    "totalPages": 1,
+                    "content": [
+                        {
+                            "name": "Geschäftsstelle Lünen",
+                            "companyId": 42,
+                            "companyName": "REMONDIS IT-Services GmbH",
+                            "address": {
+                                "houseNumber": "138 a (Hinterhof)",
+                                "street": "Brunnenstraße",
+                                "city": "Lünen",
+                                "zipCode": "44536",
+                                "countryCode": "DE"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "description": "post-200-companies",
+            "providerState": "post-200-companies",
+            "request": {
+                "method": "POST",
+                "path": "/organization-service/api/companies",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "companyNumber": 456,
+                    "name": "REMONDIS IT-Services GmbH",
+                    "address": {
+                        "houseNumber": "138 (Hinterhof)",
+                        "street": "Brunnenstraße",
+                        "city": "Lünen",
+                        "zipCode": "44536",
+                        "countryCode": "DE"
+                    }
+                }
+            },
+            "response": {
+                "status": 201,
+                "headers": {},
+                "body": {
+                    "id": 42
+                }
+            }
+        },
+        {
+            "description": "put-200-companies_{id}",
+            "providerState": "put-200-companies_{id}",
+            "request": {
+                "method": "PUT",
+                "path": "/organization-service/api/companies/undefined",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "companyNumber": 456,
+                    "name": "REMONDIS IT-Services GmbH",
+                    "address": {
+                        "houseNumber": "138 (Hinterhof)",
+                        "street": "Brunnenstraße",
+                        "city": "Lünen",
+                        "zipCode": "44536",
+                        "countryCode": "DE"
+                    }
+                }
+            },
+            "response": {
+                "status": 204,
+                "headers": {}
+            }
+        },
+        {
+            "description": "get-200-companies",
+            "providerState": "get-200-companies",
+            "request": {
+                "method": "GET",
+                "path": "/organization-service/api/companies",
+                "query": "page=0&size=1"
+            },
+            "response": {
+                "status": 200,
+                "headers": {},
+                "body": {
+                    "size": 1,
+                    "number": 0,
+                    "first": true,
+                    "last": true,
+                    "numberOfElements": 1,
+                    "totalElements": 1,
+                    "totalPages": 1,
+                    "content": [
+                        {
+                            "companyNumber": 456,
+                            "name": "REMONDIS IT-Services GmbH",
+                            "address": {
+                                "houseNumber": "138 (Hinterhof)",
+                                "street": "Brunnenstraße",
+                                "city": "Lünen",
+                                "zipCode": "44536",
+                                "countryCode": "DE"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pactSpecification": {
+            "version": "1.0.0"
+        }
+    },
+    "createdAt": "2017-10-05T13:52:52+00:00"
+}

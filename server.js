@@ -4,21 +4,8 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
-var readline = require('readline');
-var cp = require('child_process');
-var tail = cp.spawn('tail', ['-500', 'mylogfile.log']);
-var lineReader = readline.createInterface(tail.stdout, tail.stdin);
-
-lineReader.on('line', function(line) {
-	console.log('Line: ' + line);
-});
-
-tail.on('close', function(code, signal) {
-	console.log('ls finished...');
-});
-
-// API file for interacting with MongoDB
-const api = require('./server/routes/api');
+// http://nodejs.org/api.html#_child_processes
+var exec = require('child_process').exec;
 
 // Parsers
 app.use(bodyParser.json());
@@ -27,12 +14,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// API location
-app.use('/api', api);
+app.get('/results', (req, res) => {
+    // executes `pwd`
+    var child = exec("swagger-mock-validator src/assets/organization-service-swagger.yaml src/assets/ui-organization.json", function (error, stdout, stderr) {
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        }
+        res.send(stdout);
+    });
+});
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'src/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 //Set Port
@@ -41,4 +37,4 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
-server.listen(port, () => console.log(`Running on localhost:${port}`));
+server.listen(port, () => console.log(`Express Server running on localhost:${port}`));
