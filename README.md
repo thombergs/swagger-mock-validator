@@ -1,6 +1,7 @@
-# MEAN4+ Starter
+# Swagger-Mock-Validator testing application
 
-This project is based on the tutorial from [Coursetro.com](https://coursetro.com), located here:
-[Setting up an Angular 4 MEAN Stack (Tutorial)](https://coursetro.com/posts/code/84/Setting-up-an-Angular-4-MEAN-Stack-(Tutorial))
+This application is designed to test the atlassian [swagger-mock-validator] (https://bitbucket.org/atlassian/swagger-mock-validator)
 
-Good luck!
+## Start: 
+
+Type `node server.js`
