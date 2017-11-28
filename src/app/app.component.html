@@ -1,6 +1,6 @@
 <h1>Swagger-Mock-Validator</h1>
 <label>Enter Mock Url</label>
-<input type="text" name="mock-url">
+<input type="text" name="mock-url" [(ngModel)]="mockURL">
 <label>Enter Swagger Url</label>
-<input type="text" name="swagger-url">
+<input type="text" name="swagger-url" [(ngModel)]="swaggerURL">
 <button (click)="validate()">Validate</button>

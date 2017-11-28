@@ -4,6 +4,7 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
+var request = require("request")
 // http://nodejs.org/api.html#_child_processes
 var exec = require('child_process').exec;
 
@@ -14,9 +15,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
+var formattedMockURL = '';
+var formatttedSwaggerURL = '';
+
+app.post('/urls', function (req, res) {
+    res.send(req.body)
+    // replace all '\' with '/'
+    formattedMockURL = req.body['mock'].toString().replace(/\\/g, '/');
+    formattedSwaggerURL = req.body['swagger'].toString().replace(/\\/g, '/');
+    console.log(formattedMockURL, formattedSwaggerURL);
+})
+
 app.get('/results', (req, res) => {
+    console.log(formattedMockURL, formattedSwaggerURL);
     // executes `pwd`
-    var child = exec("swagger-mock-validator src/assets/organization-service-swagger.yaml src/assets/ui-organization.json", function (error, stdout, stderr) {
+    var child = exec("swagger-mock-validator " + formattedSwaggerURL + " " + formattedMockURL, function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + stderr);
         if (error !== null) {
@@ -25,10 +38,6 @@ app.get('/results', (req, res) => {
         res.send(stdout);
     });
 });
-
-app.post('/mockURL', function (req, res) {
-    res.send(req.body)
-})
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

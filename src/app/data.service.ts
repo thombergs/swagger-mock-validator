@@ -16,16 +16,7 @@ export class DataService {
       .map(result => this.result = result['_body']);
   }
 
-  sendMockURL(mockURL: JSON) {
-    this._http.post('/mockURL', mockURL)
-      .subscribe(data => {
-        console.log(data);
-      });
+  sendMockURL(urlObj: any) {
+    this._http.post('/urls', urlObj);
   }
-
-  getMockURL() {
-    return this._http.get('/mockURL')
-      .map(result => this.result = result['_body']);
-  }
-
 }

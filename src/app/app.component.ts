@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
+import { Input } from '@angular/core/src/metadata/directives';
 
 
 @Component({
@@ -11,21 +12,24 @@ export class AppComponent {
 
   data: any;
   get: any;
-  myObj: JSON;
+
+  mockURL: string;
+  swaggerURL: string;
+  myObj: any = {
+    mock: '',
+    swagger: ''
+  };
 
   constructor(private _dataService: DataService) {
-
-
-    this._dataService.sendMockURL(myObj);
-
-    this._dataService.getMockURL()
-      .subscribe(res => {
-        this.get = res;
-      });
 
   }
 
   validate() {
+
+    this.myObj.mock = this.mockURL;
+    this.myObj.swagger = this.swaggerURL;
+    this._dataService.sendMockURL(this.myObj);
+
     this._dataService.getValidationResult()
       .subscribe(res => {
         this.data = res;
