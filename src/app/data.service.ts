@@ -17,6 +17,9 @@ export class DataService {
   }
 
   sendMockURL(urlObj: any) {
-    this._http.post('/urls', urlObj);
+    this._http.post('/urls', urlObj)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }
