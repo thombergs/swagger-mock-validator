@@ -25,7 +25,7 @@ export class AppComponent {
   }
 
   validate() {
-
+    console.log('Loading validation results...')
     this.myObj.mock = this.mockURL;
     this.myObj.swagger = this.swaggerURL;
     this._dataService.sendMockURL(this.myObj);
