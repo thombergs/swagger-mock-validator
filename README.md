@@ -4,5 +4,6 @@ This application is designed to test the atlassian swagger-mock-validator: https
 
 ## Start: 
 
-`npm install` <br />
-`ng build && node server.js`
+`npm install -g swagger-mock-validator` //Install swagger-mock-validator globally
+`npm install` <br /> //Install dependencies
+`ng build && node server.js` //Start server
