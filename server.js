@@ -28,7 +28,7 @@ app.post('/urls', function (req, res) {
 
 app.get('/results', (req, res) => {
     console.log(formattedMockURL, formattedSwaggerURL);
-    // executes `pwd`
+    // execute the 'swagger-mock-validator' command in the command line using the two paths as arguments
     var child = exec("swagger-mock-validator " + formattedSwaggerURL + " " + formattedMockURL, function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + stderr);
